@@ -42,18 +42,14 @@ function titleClickHandler(event) {
   targetArticle.classList.add("active");
 }
 
-const links = document.querySelectorAll(".titles a");
 
-for (let link of links) {
-  link.addEventListener("click", titleClickHandler);
-}
 
-const articles = document.querySelectorAll(".posts article");
-console.log('articles',articles);
+// const articles = document.querySelectorAll(".posts article");
+// console.log('articles',articles);
 
-for (let article of articles) {
-  article.addEventListener("click", titleClickHandler);
-}
+// for (let article of articles) {
+//   article.addEventListener("click", titleClickHandler);
+// }
 
 const optArticleSelector = '.post',
       optTitleSelector = '.post-title',
@@ -67,17 +63,43 @@ function generateTitleLinks() {
   titleList.innerHTML = '';
  
   /* for each article */
+  const articles = document.querySelectorAll(optArticleSelector);
+  console.log('articles', articles);
 
+  let html = '';
+    
   /* get the article id */
+  for (let article of articles) {
+    const articleId = article.getAttribute("id");
+    console.log(articleId);
+    
+    /* find the title element */
+    /* get the title from the title element */
+    const articleTitle = article.querySelector(optTitleSelector).innerHTML;
+    console.log(articleTitle);
+    
+    /* create HTML of the link */
+    const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+    // console.log(linkHTML);
 
-  /* find the title element */
+    /* insert link into titleList */
+    
+    // titleList.innerHTML = titleList.innerHTML + linkHTML;
+    // titleList.insertAdjacentHTML('afterbegin', linkHTML);
+    html = html + linkHTML;
+    console.log(html);
+  }
 
-  /* get the title from the title element */
+  titleList.innerHTML = html;
 
-  /* create HTML of the link */
+  const links = document.querySelectorAll(".titles a");
+  console.log("list:", links);
 
-  /* insert link into titleList */
+  for (let link of links) {
+    link.addEventListener("click", titleClickHandler);
+  }
 
+ 
 }
 
 generateTitleLinks();
