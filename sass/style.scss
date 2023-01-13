@@ -127,6 +127,10 @@ body {
 .post-tags {
     display: flex;
 
+    a{
+        margin:0 5px;
+    }
+
     p {
         margin: 0 10px 0 0;
     }

@@ -119,39 +119,35 @@ function generateTags(){
     console.log('tagsWrapper', tagsWrapper);
 
     /* make html variable with empty string */     
-    let html = '';                 
+    let html = '';
+    
     /* get tags from data-tags attribute */
-                
-                          /* create HTML of the link */
-                          const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
-                          // console.log(linkHTML);
+    const articleTags = article.getAttribute('data-tags');
+    console.log(articleTags);          
+                     
+    /* split tags into array */
+    const articleTagsArray = articleTags.split(' ');  
+    console.log(articleTagsArray);  
 
-                          /* insert link into titleList */
-                          
-                          
-                          html = html + linkHTML;
-                          console.log(html);
-  }
-
-
-  
-
-  
-
-  
-
-  /* split tags into array */
-
-  /* START LOOP: for each tag */
+    /* START LOOP: for each tag */
+    for (let tag of articleTagsArray) {
+      console.log(tag);  
 
       /* generate HTML of the link */
+      const linkHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
+      console.log(linkHTML);  
 
       /* add generated code to html variable */
+      html = html + linkHTML;
+      console.log(html);
 
-  /* END LOOP: for each tag */
+    }
+      
+    /* insert HTML of all the links into the tags wrapper */
+    tagsWrapper.innerHTML = html;
+    console.log(tagsWrapper);
 
-  /* insert HTML of all the links into the tags wrapper */
-
+  }
   /* END LOOP: for every article: */
 }
 
