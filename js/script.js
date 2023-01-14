@@ -238,7 +238,7 @@ function generateAuthors() {
     console.log(articleAuthors);          
      
     /* generate HTML of the link ------нужен ли тут span, */
-    const linkHTML = '<li><a href="#' + articleAuthors + '">' + 'by ' + articleAuthors + '</a></li>';
+    const linkHTML = '<li><a href="#author-' + articleAuthors + '">' + 'by ' + articleAuthors + '</a></li>';
     console.log(linkHTML);  
 
     /* add generated code to html variable */
@@ -255,3 +255,57 @@ function generateAuthors() {
 }
 
 generateAuthors();
+
+function addClickListenersToAuthors() {
+  /* find all links to author */
+  const linksToAuthors = document.querySelectorAll('.post-author a');
+  console.log('linksToAuthors:', linksToAuthors);
+  
+  /* START LOOP: for each link */
+  for (let linkToAuthor of linksToAuthors) {
+    console.log(linkToAuthor);
+    /* add authorClickHandler as event listener for that link */
+    linkToAuthor.addEventListener('click', authorClickHandler);
+  }
+
+}
+
+addClickListenersToAuthors();
+
+function authorClickHandler(event) {
+  /* prevent default action for this event */
+  event.preventDefault();
+
+  /* make new constant named "clickedElement" and give it the value of "this" */
+  const clickedElement = this;
+
+  /* make a new constant "href" and read the attribute "href" of the clicked element */
+  const href = clickedElement.getAttribute('href');
+  console.log(href);
+  
+  /* make a new constant "author" and extract author from the "href" constant */
+  const author = href.replace('#author-', '');
+  console.log(author);
+  
+  /* find all author links with class active */
+  const activeLinksToAuthors = document.querySelectorAll('a.active[href^="#author-"]');
+  console.log(activeLinksToAuthors);
+
+  /* START LOOP: for each active link */
+  for (let activeLinkToAuthor of activeLinksToAuthors) {
+    /* remove class active */
+    activeLinkToAuthor.classList.remove('active');
+  }
+  /* find all author links with "href" attribute equal to the "href" constant */
+  const equalLinksToAuthors = document.querySelectorAll('a[href="' + href + '"]');
+  console.log(equalLinksToAuthors);
+
+  /* START LOOP: for each found author link */
+  for (let equalLinkToAuthor of equalLinksToAuthors) {
+
+    /* add class active */
+    equalLinkToAuthor.classList.add('active');
+  }
+  /* execute function "generateTitleLinks" with article selector as argument */
+  generateTitleLinks('[data-author="' + author + '"]');
+}
