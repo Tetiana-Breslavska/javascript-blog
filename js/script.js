@@ -106,10 +106,15 @@ function generateTitleLinks(customSelector = '') {
 
 generateTitleLinks(); 
 
-function generateTags() {
-  /* [NEW] create a new variable allTags with an empty array */
-  let allTags = [];
+function calculateTagsParams(tags) {
+  let maxMinTag {max, min}
+  return maxMinTag;
+}
 
+function generateTags() {
+  /* [NEW] create a new variable allTags with an empty object */
+  let allTags = {};
+  
   /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
   console.log('articles', articles);
@@ -127,7 +132,9 @@ function generateTags() {
     
     /* get tags from data-tags attribute */
     const articleTags = article.getAttribute('data-tags');
-    console.log(articleTags);          
+    console.log(articleTags);   
+    
+    console.log(allTags);
                      
     /* split tags into array */
     const articleTagsArray = articleTags.split(' ');  
@@ -138,7 +145,7 @@ function generateTags() {
       console.log(tag);  
 
       /* generate HTML of the link */
-      const linkHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
+      const linkHTML = '<a href="#tag-' + tag + '">' + tag + '</a>';
       console.log(linkHTML);  
 
       /* add generated code to html variable */
@@ -146,13 +153,17 @@ function generateTags() {
       console.log(html);
 
       /* [NEW] check if this link is NOT already in allTags */
-      if(allTags.indexOf(linkHTML) == -1){
-        /* [NEW] add generated code to allTags array */
-        allTags.push(linkHTML);
+      if(!allTags.hasOwnProperty(tag)){
+        /* [NEW] add tag to allTags object */
+        allTags[tag]= 1;
       }
-
+      else {
+        // чому не працює +=
+        allTags[tag]++;
+      }
     }
-      
+    console.log(allTags);
+
     /* insert HTML of all the links into the tags wrapper */
     tagsWrapper.innerHTML = html;
     
@@ -162,8 +173,27 @@ function generateTags() {
   /* [NEW] find list of tags in right column */
   const tagList = document.querySelector(optTagsListSelector);
 
-  /* [NEW] add html from allTags to tagList */
-  tagList.innerHTML = allTags.join(' ');
+  const tagsParams = calculateTagsParams(allTags);
+  console.log('tagsParams:', tagsParams);
+
+  /* [NEW] сreate variable for all links HTML code*/
+  let allTagsHTML = '';
+  console.log(allTags);
+
+  /* [NEW] START LOOP: for each tag in allTags */
+  for (let tag in allTags) {
+
+    /* [NEW] generate code of a link and add it to allTagsHTML */
+
+    ////////////как ставить єти кавічки???????????
+    allTagsHTML += '<a href="#tag-' + tag + '">' + tag + '('+ allTags[tag] + ') </a>';
+    
+    
+  }
+  
+  /* [NEW] add html from allTagsHTML to taglist */
+  tagList.innerHTML = allTagsHTML;
+ 
 }
 
 generateTags();
@@ -251,7 +281,7 @@ function generateAuthors() {
     console.log(articleAuthors);          
      
     /* generate HTML of the link ------нужен ли тут span, */
-    const linkHTML = '<li><a href="#author-' + articleAuthors + '">' + 'by ' + articleAuthors + '</a></li>';
+    const linkHTML = '<a href="#author-' + articleAuthors + '">' + 'by ' + articleAuthors + '</a>';
     console.log(linkHTML);  
 
     /* add generated code to html variable */
@@ -262,12 +292,11 @@ function generateAuthors() {
     authorsWrapper.innerHTML = html;
     
     console.log(authorsWrapper);
-
   }
-  
 }
-
 generateAuthors();
+
+
 
 function addClickListenersToAuthors() {
   /* find all links to author */
