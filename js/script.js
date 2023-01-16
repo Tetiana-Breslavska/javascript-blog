@@ -106,9 +106,27 @@ function generateTitleLinks(customSelector = '') {
 
 generateTitleLinks(); 
 
+
 function calculateTagsParams(tags) {
-  let maxMinTag {max, min}
-  return maxMinTag;
+  const params =  {'min':999999, 'max':0};
+  
+  for (let tag in tags){
+    if (tags[tag] < params.min)
+    {
+      params.min=tags[tag];
+    } 
+  }
+  
+  for (let tag in tags)
+  {
+    if (tags[tag]> params.max)
+    {
+      params.max=tags[tag];
+    } 
+  }
+
+  return params;
+  
 }
 
 function generateTags() {
@@ -121,8 +139,8 @@ function generateTags() {
 
   /* START LOOP: for every article: */
   for (let article of articles) {
-    const articleId = article.getAttribute('id');
-    console.log(articleId);
+    // const articleId = article.getAttribute('id');
+    // console.log(articleId);
     /* find tags wrapper */
     const tagsWrapper = article.querySelector(optArticleTagsSelector);
     console.log('tagsWrapper', tagsWrapper);
