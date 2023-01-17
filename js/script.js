@@ -56,7 +56,9 @@ const optArticleSelector = '.post',
   optTitleListSelector = '.titles',
   optArticleTagsSelector = '.post-tags .list',
   optArticleAuthorSelector = '.post-author',
-  optTagsListSelector = '.tags.list';
+  optTagsListSelector = '.tags.list',
+  optCloudClassCount = 5,
+  optCloudClassPrefix = 'tag-size-';
 
 function generateTitleLinks(customSelector = '') {
   /* remove contents of titleList */
@@ -129,6 +131,16 @@ function calculateTagsParams(tags) {
   
 }
 
+function calculateTagClass(count, params) {
+  
+  const normalizedCount = count - params.min;
+  const normalizedMax = params.max - params.min;
+  const percentage = normalizedCount / normalizedMax;
+  const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
+  const result= `${optCloudClassPrefix}${classNumber}`;
+  return result; 
+}
+
 function generateTags() {
   /* [NEW] create a new variable allTags with an empty object */
   let allTags = {};
@@ -180,7 +192,7 @@ function generateTags() {
         allTags[tag]++;
       }
     }
-    console.log(allTags);
+    console.log('allTags:',allTags);
 
     /* insert HTML of all the links into the tags wrapper */
     tagsWrapper.innerHTML = html;
@@ -201,12 +213,14 @@ function generateTags() {
   /* [NEW] START LOOP: for each tag in allTags */
   for (let tag in allTags) {
 
-    /* [NEW] generate code of a link and add it to allTagsHTML */
-
-    ////////////как ставить єти кавічки???????????
-    allTagsHTML += '<a href="#tag-' + tag + '">' + tag + '('+ allTags[tag] + ') </a>';
+    /* [NEW] generate code of a link and add it to allTagsHTML *////////////как ставить єти кавічки???????????
+    // allTagsHTML += '<a href="#tag-' + tag + '">' + tag + '('+ allTags[tag] + ') </a>';
+    const tagLinkHTML = '<li><a class = '+ calculateTagClass(allTags[tag], tagsParams)+'  href="#tag-' + tag + '">' + tag + ' </a></li>';
     
-    
+    // const tagLinkHTML = calculateTagClass(allTags[tag], tagsParams);
+   
+    console.log('tagLinkHTML:', tagLinkHTML);
+    allTagsHTML += tagLinkHTML;
   }
   
   /* [NEW] add html from allTagsHTML to taglist */
