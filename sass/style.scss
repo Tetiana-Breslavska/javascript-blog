@@ -18,7 +18,10 @@ $font-text: 'Rubik', sans-serif;
 }
 
 body {
-    background: tomato;
+    background-image: url("https://i.postimg.cc/tgQyY3dg/image.webp");
+    background-position: center;
+    background-size: cover;
+    // height: 100vh;
     font-family: $font-text;
     color: $color-dark;
     font-weight: 300;
@@ -63,6 +66,7 @@ body {
 .posts {
     background: $color-light;
     margin-right: 10px;
+   
     padding: 40px;
     border: 1px solid $color-dark;
     border-radius: 5px;
@@ -72,10 +76,16 @@ body {
 
 .logo {
     font-family: $font-logo;
-    font-weight: 400;
+    font-weight: 700; 
+    margin-top: 200px;
     font-size: 104px;
     line-height: 1;
     text-align: center;
+    color: rgb(255, 255, 0);
+    text-shadow: 1px 0 1px #228B22,
+            0 1px 1px #228B22,
+            -1px 0 1px #228B22,
+            0 -1px 1px #228B22;
 }
 
 /* Lists */

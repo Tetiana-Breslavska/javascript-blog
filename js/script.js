@@ -201,11 +201,9 @@ function generateTags() {
   for (let tag in allTags) {
 
     /* [NEW] generate code of a link and add it to allTagsHTML *////////////как ставить єти кавічки???????????
-    // allTagsHTML += '<a href="#tag-' + tag + '">' + tag + '('+ allTags[tag] + ') </a>';
+   
     const tagLinkHTML = '<li><a class = '+ calculateTagClass(allTags[tag], tagsParams)+'  href="#tag-' + tag + '">' + tag + ' </a></li>';
     
-    // const tagLinkHTML = calculateTagClass(allTags[tag], tagsParams);
-   
     console.log('tagLinkHTML:', tagLinkHTML);
     console.log(tagList);
     allTagsHTML += tagLinkHTML;
