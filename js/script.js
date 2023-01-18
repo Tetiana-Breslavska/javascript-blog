@@ -303,7 +303,7 @@ function generateAuthors() {
     console.log(articleAuthors);
     
     /* generate HTML of the link ------нужен ли тут span, */
-    const linkHTML = '<a href="#author-' + articleAuthors + '">' + 'by ' + articleAuthors + '</a>';
+    const linkHTML = '<a href="#author-' + articleAuthors + '">' + 'to ' + articleAuthors + '</a>';
     console.log(linkHTML);
 
     /* add generated code to html variable */
