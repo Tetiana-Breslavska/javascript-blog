@@ -18,15 +18,28 @@ $font-text: 'Rubik', sans-serif;
 }
 
 body {
-    background-image: url("https://i.postimg.cc/tgQyY3dg/image.webp");
+    background-image: url("https://i.postimg.cc/YqBpQnWc/forBlog.jpg");
     background-position: center;
     background-size: cover;
-    // height: 100vh;
+    background-attachment: fixed;
+    height: 100vh;
     font-family: $font-text;
     color: $color-dark;
     font-weight: 300;
     font-size: 16px;
     line-height: 1.7;
+}
+
+a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #059705;
+    // transition: all 1s;
+
+    :hover{
+        font-size: 19px;
+        color: rgb(35, 234, 201);
+    }
 }
 
 .container {
@@ -60,6 +73,22 @@ body {
 
 .posts {
     flex: 2 0 0;
+
+}
+
+.foto {
+   
+    display: flex;
+
+    img {
+        height: 200px;
+        margin-left: 30px;
+        object-fit: cover;
+        transition: all 1s;
+        }
+    :hover {
+        height: 250px;
+    }
 }
 
 .sidebar,
@@ -78,10 +107,11 @@ body {
     font-family: $font-logo;
     font-weight: 700; 
     margin-top: 200px;
-    font-size: 104px;
+    margin-bottom: 50px;
+    font-size: 150px;
     line-height: 1;
     text-align: center;
-    color: rgb(255, 255, 0);
+    color: rgb(251, 255, 37);
     text-shadow: 1px 0 1px #228B22,
             0 1px 1px #228B22,
             -1px 0 1px #228B22,
@@ -112,6 +142,9 @@ body {
     li {
         margin-bottom: 12px;
     }
+    a:hover {
+        font-size: 120%;
+    }
 }
 
 /* Post */
@@ -138,6 +171,11 @@ body {
 
 .post-author {
     font-style: italic;
+
+    a:hover{
+        color: rgb(35, 234, 201);
+
+    }
 }
 
 .post-tags {
@@ -145,6 +183,9 @@ body {
 
     a{
         margin:0 5px;
+    }
+    :hover{
+        color:rgb(35, 234, 201);
     }
 
     p {
@@ -175,6 +216,13 @@ body {
     color: rgb(0, 234, 255);
 }
 
-.tags a{
+.tags {
+    a{
     margin: 0 5px;
+    }
+    :hover { 
+    font-size: 101%;
+    }
+
 }
+
