@@ -76,20 +76,47 @@ a {
 
 }
 
-.foto {
-   
-    display: flex;
+// .foto {
+//     display: flex;
 
-    img {
-        height: 200px;
-        margin-left: 30px;
-        object-fit: cover;
-        transition: all 1s;
-        }
-    :hover {
-        height: 250px;
-    }
+//     img {
+//         height: 200px;
+//         margin-left: 30px;
+//         object-fit: cover;
+//         transition: all 1s;
+//         }
+//     :hover {
+//         height: 250px;
+//     }
+// }
+
+
+
+.foto {
+    display: flex;
+    justify-content: space-between;
 }
+
+.foto li {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    margin: 0 5px;
+}
+
+.foto img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: all 0.5s;
+}
+
+.foto li:hover img {
+    transform: scale(1.1);
+}
+
+
+
 
 .sidebar,
 .posts {
