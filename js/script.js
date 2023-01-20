@@ -207,23 +207,30 @@ function generateTags() {
   console.log('tagsParams:', tagsParams);
 
   /* [NEW] сreate variable for all links HTML code*/
-  let allTagsHTML = '';
-  console.log(allTagsHTML);
+  const allTagsData = {tags: []};
+  
 
   /* [NEW] START LOOP: for each tag in allTags */
   for (let tag in allTags) {
+    console.log(allTags[tag]);
 
     /* [NEW] generate code of a link and add it to allTagsHTML *////////////как ставить єти кавічки???????????
    
-    const tagLinkHTML = '<li><a class = '+ calculateTagClass(allTags[tag], tagsParams)+'  href="#tag-' + tag + '">' + tag + ' </a></li>';
+    // const tagLinkHTML = '<li><a class = '+ calculateTagClass(allTags[tag], tagsParams)+'  href="#tag-' + tag + '">' + tag + ' </a></li>';
     
-    console.log('tagLinkHTML:', tagLinkHTML);
+    // console.log('tagLinkHTML:', tagLinkHTML);
     console.log(tagList);
-    allTagsHTML += tagLinkHTML;
+
+    allTagsData.tags.push({
+      tagName: tag,
+      count: allTags[tag],
+      className: calculateTagClass(allTags[tag], tagsParams)
+    });
   }
   
   /* [NEW] add html from allTagsHTML to taglist */
-  tagList.innerHTML = allTagsHTML;
+  tagList.innerHTML = templates.tagCloudLink(allTagsData);
+  console.log(allTagsData);
   console.log(tagList);
 }
 
